@@ -20,10 +20,14 @@ default_config = \
     ]
 ]
 
-handler = clipboard_handler.clipboard_handler()
+slots = 6
+
+# 6. Slot is temp for keep mode
+handler = clipboard_handler.clipboard_handler(slots)
 
 class hotkey_handler():
-    def __init__(self, hotkeys=default_config):
+    def __init__(self, keep=False, hotkeys=default_config):
+        self.keep = keep
         self.config = hotkeys
         for hotkey in self.config[0]:
             #kotkey = "alt+v+3"
@@ -33,19 +37,38 @@ class hotkey_handler():
             keyboard.add_hotkey(hotkey, self.handle_press, args=('paste', self.config[1].index(hotkey)), suppress=True)
 
     def handle_press(self, h_type, number):
-        print(type, number)
+        if self.keep:
 
-        if h_type == "copy":
-            keyboard.press_and_release('ctrl+c')
-            sleep(1e-3)
-            handler.save_clipboard_to_dict(number)
+            if h_type == "copy":
+                handler.save_clipboard_to_dict(slots-1)
+                sleep(1e-3)
+                keyboard.press_and_release('ctrl+c')
+                sleep(1e-3)
+                handler.save_clipboard_to_dict(number)
+                handler.load_clipboard_from_dict(slots-1)
+
+            else:
+                handler.save_clipboard_to_dict(slots-1)
+                handler.load_clipboard_from_dict(number)
+                sleep(1e-3)
+                keyboard.press_and_release('ctrl+v')
+                sleep(1e-3)
+                handler.load_clipboard_from_dict(slots-1)
+
+
+
         else:
-            handler.load_clipboard_from_dict(number)
-            sleep(1e-3)
-            keyboard.press_and_release('ctrl+v')
+            if h_type == "copy":
+                keyboard.press_and_release('ctrl+c')
+                sleep(1e-3)
+                handler.save_clipboard_to_dict(number)
+            else:
+                handler.load_clipboard_from_dict(number)
+                sleep(1e-3)
+                keyboard.press_and_release('ctrl+v')
         
 
 
 
-hotkey_handler()
+hotkey_handler(True)
 keyboard.wait()
