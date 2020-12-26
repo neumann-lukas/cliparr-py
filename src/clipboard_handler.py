@@ -28,9 +28,13 @@ class clipboard_handler():
         win32clipboard.SetClipboardData(code, data)
 
 
-    def save_clipboard_to_dict(self, i):
-        self.saved
-        self.saved[i] = {}
+    def save_clipboard_to_dict(self, i, dict=None):
+        
+        if dict is None:
+            dict = self.saved
+
+        print('Saving: {}'.format(str(i)))
+        dict[i] = {}
         win32clipboard.OpenClipboard(None)
         code = 0
         while True:
@@ -40,15 +44,19 @@ class clipboard_handler():
 
             data = self.get_clipboard_data(code)
             #print('Saving: {}, type = {}'.format(str(code), type(data)))
-            self.saved[i][code] = data
+            dict[i][code] = data
         win32clipboard.CloseClipboard()
 
 
-    def load_clipboard_from_dict(self, i):
-        self.saved
+    def load_clipboard_from_dict(self, i, dict=None):
+        
+        if dict is None:
+            dict = self.saved
+
+        print('Loading: {}'.format(str(i)))
         win32clipboard.OpenClipboard(None)
         win32clipboard.EmptyClipboard()
-        for code, data in self.saved[i].items():
+        for code, data in dict[i].items():
             #print('Loading: {}, type = {}'.format(str(code), type(data)))
             self.set_clipboard_data(code, data)
         win32clipboard.CloseClipboard()
