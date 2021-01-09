@@ -7,8 +7,8 @@ formats = {1: 'CF_TEXT', 2: 'CF_BITMAP', 3: 'CF_METAFILEPICT', 4: 'CF_SYLK', 5: 
 
 
 class clipboard_handler():
-    def __init__(self, slots=5):
-        self.slots = slots
+    def __init__(self, slots):
+        self.slots = slots + 1
         self.saved = [{} for _ in range(slots)] 
 
     def format_name_from_code(self, fmt):
