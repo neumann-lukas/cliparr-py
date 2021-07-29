@@ -2,3 +2,9 @@ pywin32
 tkinter
 time
 keyboard
+argparse
+json
+os
+PySimpleGUI
+sys
+subprocess
