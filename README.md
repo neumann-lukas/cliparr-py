@@ -15,4 +15,4 @@ Features & Uses:
 **Usage with GUI:*
   1. Download the whole code or the GUI release.
   2. Run command `pip install -r requirements.txt`.
-  3. Run the GUI.py
+  3. Run the GUI.py unsing `pythonw GUI.py`.
