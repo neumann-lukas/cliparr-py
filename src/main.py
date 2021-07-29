@@ -7,10 +7,6 @@ import json
 
 class hotkey_handler():
     def __init__(self, keep, hotkeys):
-
-        with open("pid.txt", "w+") as f:
-            f.write(str(os.getpid()))
-
         print("hotkey_handler started")
         self.running = True
         self.slots = len(hotkeys) + 1
@@ -73,7 +69,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     print(args)
-    hotkey_handler(True, json.load(open("config.json"))["hotkey"])
+    hotkey_handler(True, json.load(open(args.config))["hotkey"])
 
      # sys.exit(2)
     #hotkey_handler(int(sys.argv[0]), bool(sys.argv[1]))

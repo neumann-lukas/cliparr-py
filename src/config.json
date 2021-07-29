@@ -1,1 +1,1 @@
-{"general": {"mode": "keep"}, "hotkey": {"copy": "ctrl+f", "copy-1": "ctrl+f2", "copy-2": "ctrl+f3", "copy-3": "ctrl+f4", "copy-4": "ctrl+f5", "paste-0": "shift+f1", "paste-1": "shift+f2", "paste-2": "shift+f3", "paste-3": "shift+f4", "paste-4": "shift+f5"}}
+{"general": {"mode": "keep"}, "hotkey": {"copy": "ctrl+f1", "copy-1": "ctrl+f2", "copy-2": "ctrl+f3", "copy-3": "ctrl+f4", "copy-4": "ctrl+f5", "paste-0": "shift+f1", "paste-1": "shift+f2", "paste-2": "shift+f3", "paste-3": "shift+f4", "paste-4": "shift+f5"}}
